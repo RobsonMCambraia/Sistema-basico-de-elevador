@@ -8,21 +8,26 @@ Original file is located at
 """
 
 import random as rd
+import numpy as np
 
+#Sistema de sorteio do andar do elevador
 andar_sorteado = []
 
 for andar_elevador in range(0, 5):
   andar_elevador = rd.randint(0, 5)
   andar_sorteado.append(andar_elevador)
-print(andar_sorteado)
+print(f'Posição de cada elevador sorteado:\t{andar_sorteado}')
 
-peso_sorteado = []
+#Sistema de sorteio do peso de cada elevador, indo de 0 à 10
+quant_sorteado = []
 
-for peso_elevador in range(0, 5):
-  peso_elevador = rd.randint(99, 301)
-  peso_sorteado.append(peso_elevador)
-print(peso_sorteado)
+for quant_elevador in range(0, 5):
+  quant_elevador = rd.randint(0, 5)
+  quant_sorteado.append(quant_elevador)
+print(f'Quantidade sorteada de cada elevador:\t{quant_sorteado}\n')
+print(f'Posição do elevador 01: {andar_sorteado[0]} | Quantidade de pessoas: {quant_sorteado[0]} \nPosição do elevador 02: {andar_sorteado[1]} | Quantidade de pessoas: {quant_sorteado[1]}\nPosição do elevador 03: {andar_sorteado[2]} | Quantidade de pessoas: {quant_sorteado[2]}\nPosição do elevador 04: {andar_sorteado[3]} | Quantidade de pessoas: {quant_sorteado[3]}\nPosição do elevador 05: {andar_sorteado[4]} | Quantidade de pessoas: {quant_sorteado[4]}\n')
 
+#Comunicação com o usuário para obter sua localização no prédio
 while True:
   passageiro = input("Digite seu andar:\t").lstrip('0').strip('-')
   
@@ -33,15 +38,17 @@ while True:
     break
 
 elevador_prox = []
-
+#Sistema de cálculo do elevador mais próximo
 for i in range(len(andar_sorteado)):
   passageiro_num_inteiro = int(passageiro)
   calculo_prox = passageiro_num_inteiro - andar_sorteado[i]
-  elevador_prox.append(calculo_prox)
+  elevador_prox.append(abs(calculo_prox))
 
+print(f'Elevador próximo:\t {elevador_prox}')
+
+#Amostragem dos resultados para o usuário
 print('')
-print(elevador_prox)
-print(andar_sorteado)
+print(f'Posição do elevador 01: {andar_sorteado[0]} | Quantidade de pessoas: {quant_sorteado[0]} \nPosição do elevador 02: {andar_sorteado[1]} | Quantidade de pessoas: {quant_sorteado[1]}\nPosição do elevador 03: {andar_sorteado[2]} | Quantidade de pessoas: {quant_sorteado[2]}\nPosição do elevador 04: {andar_sorteado[3]} | Quantidade de pessoas: {quant_sorteado[3]}\nPosição do elevador 05: {andar_sorteado[4]} | Quantidade de pessoas: {quant_sorteado[4]}\n')
 
-print(f'menor valor: {min(elevador_prox)}')
-print(f'index do menor valor: {elevador_prox[min(elevador_prox)]}')
+print(f'Elevador mais próximo:\t{elevador_prox.index(min(elevador_prox))+1}')
+print(f'Diferença de distância do elevador mais próximo sem abs:\t{min(elevador_prox)}')
