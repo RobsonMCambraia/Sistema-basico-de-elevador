@@ -18,7 +18,7 @@ for andar_elevador in range(0, 5):
   andar_sorteado.append(andar_elevador)
 print(f'Posição de cada elevador sorteado:\t{andar_sorteado}')
 
-#Sistema de sorteio do peso de cada elevador, indo de 0 à 10
+#Sistema de sorteio da quantidade de pessoas em cada elevador
 quant_sorteado = []
 
 for quant_elevador in range(0, 5):
