@@ -63,7 +63,7 @@ else:
   quantidade_ordenada = sorted(quant_sorteado)
   print(quantidade_ordenada)
   print(f'segundo menor valor: {quantidade_ordenada[1]}')
-  print(quantidade_ordenada[1].index)
+  print(quantidade_ordenada[1])
 
   for k in range(0, 5):
     if quantidade_ordenada[k] == elev_perfeito:
