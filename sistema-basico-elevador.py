@@ -13,7 +13,7 @@ import numpy as np
 andar_sorteado = []
 quant_sorteado = []
 
-for i in range(0, 5):
+for i in range(0, 3):
   #Sistema de sorteio do andar do elevador
   andar_elevador = rd.randint(0, 5)
   andar_sorteado.append(andar_elevador)
@@ -21,14 +21,10 @@ for i in range(0, 5):
   #Sistema de sorteio da quantidade de pessoas no elevador
   quant_elevador = rd.randint(0, 5)
   quant_sorteado.append(quant_elevador)
-print(f'Posição de cada elevador sorteado:\t{andar_sorteado}')
-print(f'Quantidade sorteada de cada elevador:\t{quant_sorteado}\n')
-
-print(f'Posição do elevador 01: {andar_sorteado[0]} | Quantidade de pessoas: {quant_sorteado[0]} \nPosição do elevador 02: {andar_sorteado[1]} | Quantidade de pessoas: {quant_sorteado[1]}\nPosição do elevador 03: {andar_sorteado[2]} | Quantidade de pessoas: {quant_sorteado[2]}\nPosição do elevador 04: {andar_sorteado[3]} | Quantidade de pessoas: {quant_sorteado[3]}\nPosição do elevador 05: {andar_sorteado[4]} | Quantidade de pessoas: {quant_sorteado[4]}\n')
 
 #Comunicação com o usuário para obter sua localização no prédio
 while True:
-  passageiro = input("Digite seu andar:\t").lstrip('0').strip('-')
+  passageiro = str(input("Digite seu andar:\t")).lstrip('0').strip('-')
   
   if passageiro > '5' or passageiro.isnumeric() == False:
     print("Dígito inválido.")
@@ -43,31 +39,15 @@ for j in range(len(andar_sorteado)):
   calculo_prox = passageiro_num_inteiro - andar_sorteado[j]
   elevador_prox.append(abs(calculo_prox))
 
-print(f'Elevador próximo:\t {elevador_prox}')
-
 #Amostragem dos resultados para o usuário
 print('')
-print(f'Posição do elevador 01: {andar_sorteado[0]} | Quantidade de pessoas: {quant_sorteado[0]} \nPosição do elevador 02: {andar_sorteado[1]} | Quantidade de pessoas: {quant_sorteado[1]}\nPosição do elevador 03: {andar_sorteado[2]} | Quantidade de pessoas: {quant_sorteado[2]}\nPosição do elevador 04: {andar_sorteado[3]} | Quantidade de pessoas: {quant_sorteado[3]}\nPosição do elevador 05: {andar_sorteado[4]} | Quantidade de pessoas: {quant_sorteado[4]}\n')
+print(f'Posição do elevador 01: {andar_sorteado[0]} | Quantidade de pessoas: {quant_sorteado[0]} \nPosição do elevador 02: {andar_sorteado[1]} | Quantidade de pessoas: {quant_sorteado[1]}\nPosição do elevador 03: {andar_sorteado[2]} | Quantidade de pessoas: {quant_sorteado[2]}\n')
 
-elev_perfeito = elevador_prox.index(min(elevador_prox))+1
-elev_vago = quant_sorteado.index(min(quant_sorteado))+1
+elev_mais_prox = elevador_prox.index(min(elevador_prox))+1
+elev_mais_vago = quant_sorteado.index(min(quant_sorteado))+1
 
-print(f'Elevador mais vago:\t {elev_vago}')
-
-print(f'Elevador mais próximo:\t{elev_perfeito}')
-print(f'Diferença de distância do elevador mais próximo sem abs:\t{min(elevador_prox)}')
-
-if elev_perfeito == elev_vago:
-  print(f'O melhor elevador é o:\t{(elev_perfeito + elev_vago)/2}')
+if elev_mais_prox  == elev_mais_vago and quant_sorteado[elev_mais_prox ] < 5:
+  print(f'O melhor elevador é o:\t{(elev_mais_prox  + elev_mais_vago)/2}')
 else:
-  quantidade_ordenada = sorted(quant_sorteado)
-  print(quantidade_ordenada)
-  print(f'segundo menor valor: {quantidade_ordenada[1]}')
-  print(quantidade_ordenada[1])
-
-  for k in range(0, 5):
-    if quantidade_ordenada[k] == elev_perfeito:
-      print(f'o melhor elevador é o:\t {quantidade_ordenada[k]}')
-      break
-    else:
-      print(f'deu erro no {k}')
+  quant_minima = np.argmin(quant_sorteado)
+  print(f'o melhor elevador é  o:\t {quant_minima+1}')
